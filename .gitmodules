@@ -1,0 +1,3 @@
+[submodule "SchoolKiller"]
+	path = SchoolKiller
+	url = git@github.com:rmant7/SchoolKiller.git
