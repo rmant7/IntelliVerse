@@ -72,6 +72,7 @@ dependencies {
 
     // Dagger - Hilt
     implementation(libs.hilt.android)
+    implementation(libs.firebase.common.ktx)
     ksp(libs.dagger.compiler)
     ksp(libs.hilt.compiler)
     ksp(libs.hilt.android.compiler)
@@ -88,6 +89,7 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.play.services.ads.lite)
     implementation(libs.analytics)
+    implementation(project(":shared"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -41,6 +41,12 @@ timber = "5.0.1"
 playServicesAdsLite = "23.5.0"
 
 firebaseAppdistributionGradle = "5.0.0"
+appcompat = "1.7.0"
+material = "1.12.0"
+firebaseCommonKtx = "21.0.0"
+runtimeAndroid = "1.7.6"
+uiAndroid = "1.7.6"
+foundationLayoutAndroid = "1.7.6"
 
 
 [libraries]
@@ -104,9 +110,16 @@ secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.se
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 play-services-ads-lite = { group = "com.google.android.gms", name = "play-services-ads-lite", version.ref = "playServicesAdsLite" }
 firebase-appdistribution-gradle = { group = "com.google.firebase", name = "firebase-appdistribution-gradle", version.ref = "firebaseAppdistributionGradle" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
+androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
+androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
+androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-dynamic-feature = { id = "com.android.dynamic-feature", version = "8.1.4" }
+android-library = { id = "com.android.library", version.ref = "agp" }
