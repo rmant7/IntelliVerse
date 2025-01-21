@@ -66,6 +66,7 @@ android {
             excludes += "META-INF/INDEX.LIST"
         }
     }
+    dynamicFeatures += setOf(":SchoolKiller")
 }
 
 dependencies {
@@ -73,6 +74,8 @@ dependencies {
     // Dagger - Hilt
     implementation(libs.hilt.android)
     implementation(libs.firebase.common.ktx)
+
+    implementation(libs.feature.delivery.ktx)
     ksp(libs.dagger.compiler)
     ksp(libs.hilt.compiler)
     ksp(libs.hilt.android.compiler)
