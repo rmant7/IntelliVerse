@@ -1,4 +1,3 @@
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -35,7 +34,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                //"proguard-rules.pro"
             )
         }
     }
@@ -66,16 +65,12 @@ android {
             excludes += "META-INF/INDEX.LIST"
         }
     }
-    dynamicFeatures += setOf(":SchoolKiller")
 }
 
 dependencies {
 
     // Dagger - Hilt
     implementation(libs.hilt.android)
-    implementation(libs.firebase.common.ktx)
-
-    implementation(libs.feature.delivery.ktx)
     ksp(libs.dagger.compiler)
     ksp(libs.hilt.compiler)
     ksp(libs.hilt.android.compiler)
@@ -89,10 +84,15 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.navigation.compose)
+    implementation(project(":SchoolKiller"))
+    implementation(project(":Calories"))
+    implementation(project(":shared"))
     implementation(libs.timber)
     implementation(libs.play.services.ads.lite)
+    implementation(libs.firebase.common.ktx)
     implementation(libs.analytics)
-    implementation(project(":shared"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

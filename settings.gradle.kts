@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Intelliverse"
-include(":app", ":SchoolKiller", ":shared")
+include(":app", ":SchoolKiller", ":Calories", ":shared")

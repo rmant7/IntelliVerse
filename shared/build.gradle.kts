@@ -7,10 +7,12 @@ if (localPropertiesFile.exists()) {
     localProperties.load(localPropertiesFile.inputStream())
 }
 val isAdvertisementDisabled = localProperties.getProperty("is_advertisement_disabled", "false")
+val geminiApiKey = localProperties.getProperty("gemini_api_key")
 
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -34,6 +36,7 @@ android {
         }
         all {
             buildConfigField("boolean", "is_advertisement_disabled", isAdvertisementDisabled)
+            buildConfigField("String", "gemini_api_key", "\"$geminiApiKey\"")
         }
     }
     compileOptions {
@@ -54,6 +57,31 @@ android {
 
 dependencies {
 
+    // Media player
+    implementation (libs.androidx.media3.exoplayer)
+    implementation(libs.common)
+    //Markdown to Html
+    implementation(libs.markdown)
+
+    // LangChain4j
+    implementation(libs.dev.langchain4j.langchain4j.open.ai)
+    implementation(libs.langchain4j)
+
+    // Room Database
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+
+    // DataStore Preferences
+    implementation(libs.androidx.datastore.preferences)
+
+    // Ktor & kotlin Serialization
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.serialization)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.ktor.client.logging.jvm)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -63,6 +91,7 @@ dependencies {
     implementation(libs.androidx.runtime.android)
     implementation(libs.androidx.ui.android)
     implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.material3.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
