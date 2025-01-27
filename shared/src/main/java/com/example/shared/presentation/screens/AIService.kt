@@ -1,4 +1,4 @@
-package com.calories.presentation.screens.output.result
+package com.example.shared.presentation.screens
 
 enum class AIService {
     GEMINI_TWO_WITH_IMAGE,

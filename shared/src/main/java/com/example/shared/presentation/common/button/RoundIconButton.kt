@@ -1,4 +1,4 @@
-package com.calories.presentation.common.button
+package com.example.shared.presentation.common.button
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape

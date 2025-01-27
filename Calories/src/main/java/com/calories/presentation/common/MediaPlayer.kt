@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.media3.common.util.UnstableApi
 import com.calories.R
 import com.example.shared.domain.usecases.AudioPlayer
-import com.calories.presentation.common.button.RoundIconButton
+import com.example.shared.presentation.common.button.RoundIconButton
 import com.calories.presentation.screens.output.result.ResultViewModel
 import com.calories.presentation.screens.output.result.ResultViewModel.Companion.playbackSpeeds
 import kotlinx.coroutines.delay

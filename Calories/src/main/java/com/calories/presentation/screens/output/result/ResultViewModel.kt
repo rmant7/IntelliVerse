@@ -20,6 +20,7 @@ import com.example.shared.domain.usecases.AudioPlayer
 import com.example.shared.domain.usecases.ImageUtils
 import com.example.shared.ads.InterstitialAdUseCase
 import com.calories.presentation.screens.output.SharedViewModel
+import com.example.shared.presentation.screens.AIService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

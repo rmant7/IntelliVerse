@@ -1,4 +1,4 @@
-package com.calories.presentation.common
+package com.example.shared.presentation.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -26,7 +26,7 @@ import com.calories.R
 import com.calories.presentation.common.dialog.EnlargedImageDialog
 import com.calories.presentation.common.dialog.PermissionMessageRationale
 import com.calories.presentation.common.dialog.PermissionRequestDialog
-import com.calories.presentation.permissions.PermissionSet
+import com.example.shared.presentation.permissions.PermissionSet
 import kotlinx.coroutines.launch
 import timber.log.Timber
 

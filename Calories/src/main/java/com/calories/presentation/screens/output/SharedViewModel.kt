@@ -2,7 +2,7 @@ package com.calories.presentation.screens.output
 
 import androidx.lifecycle.ViewModel
 import com.example.shared.domain.usecases.TextUtils
-import com.calories.presentation.screens.output.result.AIService
+import com.example.shared.presentation.screens.AIService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

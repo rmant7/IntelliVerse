@@ -1,4 +1,4 @@
-package com.calories.presentation.common
+package com.example.shared.presentation.common
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -10,7 +10,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.OffsetMapping
@@ -18,7 +17,6 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.calories.R
 
 @Composable
 fun StaticLabelTextField(
@@ -26,7 +24,8 @@ fun StaticLabelTextField(
     value:String,
     onValueChange : (String)->Unit,
     placeholderText: String = "",
-    singleLine:Boolean = false
+    singleLine:Boolean = false,
+    label: String
 ){
 
     val textColor = if (value.isEmpty())
@@ -52,11 +51,10 @@ fun StaticLabelTextField(
         },
         label = {
             Text(
-                text = stringResource(
-                    id = R.string.food_properties
-                )
+                text = label
             )
         },
+        //added for label always be visible
         visualTransformation = if (value.isEmpty())
             PlaceholderTransformation(placeholder = placeHolder.value)
         else VisualTransformation.None,

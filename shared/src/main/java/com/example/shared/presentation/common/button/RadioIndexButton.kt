@@ -1,4 +1,4 @@
-package com.calories.presentation.common.button
+package com.example.shared.presentation.common.button
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween

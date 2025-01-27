@@ -36,10 +36,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.calories.R
 import com.example.shared.domain.prompt.options.ExplanationLevelOption
 import com.example.shared.domain.prompt.options.SolutionLanguageOption
-import com.calories.presentation.common.ApplicationScaffold
-import com.calories.presentation.common.StaticLabelTextField
-import com.calories.presentation.common.button.RoundIconButton
-import com.calories.presentation.common.button.UniversalButton
+import com.example.shared.presentation.common.ApplicationScaffold
+import com.example.shared.presentation.common.StaticLabelTextField
+import com.example.shared.presentation.common.button.RoundIconButton
+import com.example.shared.presentation.common.button.UniversalButton
 import com.calories.presentation.common.image.PictureItem
 import java.util.Locale
 
@@ -64,6 +64,7 @@ fun HomeScreenContent(
     val userTextTask = viewModel.userTextTask.collectAsState()
     val placeHolderUserTaskText =
         stringResource(R.string.additional_info_TextField_placeholder_text_calories)
+    val label = stringResource(R.string.food_properties)
     val secretShowAd = viewModel.secretShowAd.collectAsState()
 
     fun showWarning(message: String) {
@@ -139,7 +140,8 @@ fun HomeScreenContent(
                                 onValueChange = {
                                     viewModel.updateUserTextTask(it)
                                 },
-                                placeholderText = placeHolderUserTaskText
+                                placeholderText = placeHolderUserTaskText,
+                                label = label
                             )
 
                             Row(

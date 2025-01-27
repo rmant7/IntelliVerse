@@ -1,4 +1,4 @@
-package com.calories.presentation.common.web_view
+package com.example.shared.presentation.common.web_view
 
 import android.webkit.WebView
 import android.webkit.WebViewClient

@@ -1,4 +1,4 @@
-package com.calories.presentation.ui.theme
+package com.example.shared.presentation.theme
 
 import android.app.Activity
 import android.os.Build

@@ -47,7 +47,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.calories.presentation.common.ApplicationScaffold
+import com.example.shared.presentation.common.ApplicationScaffold
 import com.calories.presentation.screens.output.SharedViewModel
 import com.calories.presentation.screens.home.HomeScreen
 import com.calories.presentation.screens.home.HomeViewModel

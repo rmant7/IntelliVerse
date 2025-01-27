@@ -1,4 +1,4 @@
-package com.calories.presentation.permissions
+package com.example.shared.presentation.permissions
 
 import android.Manifest
 import android.content.Context

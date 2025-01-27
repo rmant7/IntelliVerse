@@ -45,14 +45,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.calories.BuildConfig
 import com.calories.R
 import com.example.shared.domain.usecases.TextUtils
-import com.calories.presentation.common.ApplicationScaffold
+import com.example.shared.presentation.common.ApplicationScaffold
 import com.calories.presentation.common.MediaPlayer
-import com.calories.presentation.common.button.RadioIndexButton
-import com.calories.presentation.common.button.RoundIconButton
-import com.calories.presentation.common.button.TextAlignmentButton
+import com.example.shared.presentation.common.button.RadioIndexButton
+import com.example.shared.presentation.common.button.RoundIconButton
+import com.example.shared.presentation.common.button.TextAlignmentButton
 import com.calories.presentation.common.dialog.ErrorAlertDialog
-import com.calories.presentation.common.web_view.HtmlTextView
-import com.calories.presentation.common.web_view.cleanHtmlStr
+import com.example.shared.presentation.common.web_view.HtmlTextView
+import com.example.shared.presentation.common.web_view.cleanHtmlStr
 
 
 @Composable

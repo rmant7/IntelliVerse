@@ -1,4 +1,4 @@
-package com.calories.presentation.common.web_view
+package com.example.shared.presentation.common.web_view
 
 import android.annotation.SuppressLint
 import android.webkit.JavascriptInterface
@@ -113,7 +113,7 @@ private fun getTextDirStr(layoutDirection: LayoutDirection?): String {
 }
 
 // Remove Kotlin String formatting
-internal fun cleanHtmlStr(str: String): String {
+fun cleanHtmlStr(str: String): String {
     if (str.isBlank()) {
         return ""
     }
