@@ -27,14 +27,14 @@
 
     // Text Field Labels
     <string name="recognize_text_button_label">הצג טקסט מזוהה</string>
-    <string name="additional_information_TextField_label">משימה</string>
+    <string name="food_properties">מאפייני מזון</string>
     <string name="What_to_solve_TextField_label">מה לפתור?</string>
 <!--    <string name="What_to_solve_TextField_label">מה לפתור?</string>-->
     <string name="rating_TextField_label">דירוג</string>
 
     // Text Field PlaceHolders
     <string name="no_solution_chosen">לא נבחר פתרון.</string>
-    <string name="additional_info_TextField_placeholder_text">תן הסבר על משפט פיתגורס.</string>
+    <string name="additional_info_TextField_placeholder_text_calories">3 בננות ותפוח אחד, כולם בגודל בינוני.</string>
 
 
     // Drop Down Menu Labels
@@ -105,7 +105,7 @@
     <string name="upload_from_url">העלה קישור</string>
     <string name="upload_picture">העלה תמונה</string>
     <string name="take_a_picture">צלם תמונה</string>
-    <string name="recognized_text_value">טקסט מזוהה</string>
+    <string name="recognized_properties">מאפיינים מזוהים</string>
     <string name="error_gemini_ocr_result_extraction">AI לא הצליח לזהות טקסט מהתמונה. בבקשה, נסה שוב.</string>
     <string name="prompt_is_empty">הטקסט המזוהה ריק. אנא נסה שוב!</string>
     <string name="language_not_supported">"השפה שנבחרה אינה זמינה ליצירת מדיה. תכונות אחרות ימשיכו לעבוד. האם ברצונך להוריד את נתוני השפה הדרושים כדי להפעיל תכונה זו?"</string>

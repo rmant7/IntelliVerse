@@ -27,14 +27,14 @@
 
     // Text Field Labels
     <string name="recognize_text_button_label">التعرف على النص</string>
-    <string name="additional_information_TextField_label">مهمة</string>
+    <string name="food_properties">خصائص الغذاء</string>
     <string name="What_to_solve_TextField_label">على ماذا ترد الاجابة؟</string>
 <!--    <string name="What_to_solve_TextField_label">على ماذا ترد الاجابة؟</string>-->
     <string name="rating_TextField_label">تصنيف</string>
 
     // Text Field PlaceHolders
     <string name="no_solution_chosen">لم يتم تحديد أي حل.</string>
-    <string name="additional_info_TextField_placeholder_text">اخبرني عن نظرية فيثاغوروس.</string>
+    <string name="additional_info_TextField_placeholder_text_calories">3 موز و 1 تفاحة متوسطة.</string>
 
 
     // Drop Down Menu Labels
@@ -105,7 +105,7 @@
     <string name="upload_from_url">تحميل</string>
     <string name="upload_picture">تحميل صورة</string>
     <string name="take_a_picture">تصوير صورة</string>
-    <string name="recognized_text_value">نص مألوف</string>
+    <string name="recognized_properties">خصائص معترف بها</string>
     <string name="error_gemini_ocr_result_extraction">البرنامج لم يتعرف على النص من الصورة. حاول مرة أخرى.</string>
     <string name="prompt_is_empty">النص المحدد فارغ, حاول مرة أخرى!</string>
     <string name="language_not_supported">"اللغة المحددة غير متاحة لإنشاء الوسائط. وستستمر الميزات الأخرى في العمل. هل ترغب في تنزيل بيانات اللغة اللازمة لتمكين هذه الميزة؟"</string>

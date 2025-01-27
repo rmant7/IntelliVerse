@@ -13,6 +13,11 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+
+    id("com.google.devtools.ksp")
+
+    // Dagger-Hilt
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -56,6 +61,12 @@ android {
 }
 
 dependencies {
+
+    // Dagger - Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.dagger.compiler)
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
 
     // Media player
     implementation (libs.androidx.media3.exoplayer)

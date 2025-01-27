@@ -63,7 +63,7 @@ fun HomeScreenContent(
     val corruptedUploadedFile = stringResource(R.string.corrupted_loaded_file)
     val userTextTask = viewModel.userTextTask.collectAsState()
     val placeHolderUserTaskText =
-        stringResource(R.string.additional_info_TextField_placeholder_text)
+        stringResource(R.string.additional_info_TextField_placeholder_text_calories)
     val secretShowAd = viewModel.secretShowAd.collectAsState()
 
     fun showWarning(message: String) {

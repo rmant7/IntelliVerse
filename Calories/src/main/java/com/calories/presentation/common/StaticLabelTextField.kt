@@ -53,7 +53,7 @@ fun StaticLabelTextField(
         label = {
             Text(
                 text = stringResource(
-                    id = R.string.additional_information_TextField_label
+                    id = R.string.food_properties
                 )
             )
         },

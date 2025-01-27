@@ -26,7 +26,7 @@
 
     // Text Field Labels
     <string name="recognize_text_button_label">Показать распознанный текст</string>
-    <string name="additional_information_TextField_label">Задача</string>
+    <string name="food_properties">Пищевые свойства</string>
     <string name="What_to_solve_TextField_label">Что решить?</string>
 
     // Drop Down Menu Labels
@@ -69,7 +69,7 @@
     </string-array>
     <string name="rating_TextField_label">Оценка</string>
     <string name="no_solution_chosen">Решение не выбрано.</string>
-    <string name="additional_info_TextField_placeholder_text">Расскажи о теореме Пифагора.</string>
+    <string name="additional_info_TextField_placeholder_text_calories">3 банана и 1 яблоко среднего размера.</string>
 
     // Dialog text messages
     <string name="invalid_images_message">Похоже, вы удалили некоторые изображения из хранилища каталога приложения SchoolKiller. Не беспокойтесь, SchoolKiller попытается очистить эти изображения одно за другим из кеша приложения. Пожалуйста, подтвердите удаление каждого изображения, если это необходимо. Любое изображение, которое отображается пустым, является поврежденным. Вы хотите продолжить?</string>
@@ -101,7 +101,7 @@
     <string name="upload_from_url">Загрузить</string>
     <string name="upload_picture">Загрузить картинку</string>
     <string name="take_a_picture">Фото</string>
-    <string name="recognized_text_value">Распознанный текст</string>
+    <string name="recognized_properties">Признанные свойства</string>
     <string name="error_gemini_ocr_result_extraction">ИИ не смог распознать текст. Пожалуйста, попробуйте снова.</string>
     <string name="prompt_is_empty">Поле распознанного текста пустое. Пожалуйста, попробуйте снова!</string>
     <string name="language_not_supported">"Выбранный язык недоступен для создания мультимедиа. Остальные функции продолжат работать. Хотите ли вы загрузить необходимые языковые данные для включения этой функции?"</string>

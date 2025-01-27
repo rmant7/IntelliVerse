@@ -67,7 +67,7 @@ fun OcrScreenContent(
     val shouldShowErrorMessage = remember { mutableStateOf(true) }
 
     val textDirection = viewModel.ocrTextDirection.collectAsState()
-    val recognizedTextLabel = stringResource(R.string.recognized_text_value)
+    val recognizedTextLabel = stringResource(R.string.recognized_properties)
 
     BackHandler {}
 

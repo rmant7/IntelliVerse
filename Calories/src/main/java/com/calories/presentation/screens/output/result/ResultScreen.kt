@@ -94,7 +94,7 @@ fun ResultScreen(
     val solutionsGenerationProgress = stringResource(R.string.progress_bar_hint_text_value)
 
     val solutionTextLabel = stringResource(R.string.solution_text_value)
-    val recognizedTextLabel = stringResource(R.string.recognized_text_value)
+    val recognizedTextLabel = stringResource(R.string.recognized_properties)
     val taskTextLabel = stringResource(R.string.user_task_value)
     val solvedBySchoolKiller = stringResource(R.string.solved_by_schoolkiller)
 

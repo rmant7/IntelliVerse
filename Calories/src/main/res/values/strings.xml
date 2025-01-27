@@ -10,7 +10,7 @@
     <string name="Guidance">For optimal results, please provide detailed TEXT for your task. If you attach images, ensure that any recognized text is edited to match the original accurately.</string>
 
     // Text values
-    <string name="recognized_text_value">Recognized text</string>
+    <string name="recognized_properties">Recognized Properties</string>
     <string name="solution_text_value">Solution</string>
     <string name="user_task_value">Task</string>
     <string name="is_ocr_result_included_value">Use selected recognized text</string>
@@ -32,13 +32,13 @@
     <string name="recognize_text_button_label">Show recognized text</string>
 
     // Text Field Labels
-    <string name="additional_information_TextField_label">Task</string>
+    <string name="food_properties">Food Properties</string>
     <string name="What_to_solve_TextField_label">What do you want to solve?</string>
     <string name="rating_TextField_label">Rating</string>
     <string name="no_solution_chosen">Solution is not selected yet.</string>
 
     // Text Field PlaceHolders
-    <string name="additional_info_TextField_placeholder_text">Tell me about Pythagorean theorem.</string>
+    <string name="additional_info_TextField_placeholder_text_calories">3 bananas and 1 apple, all medium size.</string>
     <string name="first_ocr_result_is_not_ready">Text is being recognized, please, wait…</string>
 
     // Drop Down Menu Labels

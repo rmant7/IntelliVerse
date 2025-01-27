@@ -121,6 +121,22 @@ fun StartScreen(navController: NavController) {
                     Text("Go to SchoolKiller")
                 }
 
+                // Calories Button
+                Button(
+                    onClick = { navController.navigate("calories") },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.calorie), // Reference the drawable resource
+                        contentDescription = "Calories Icon",
+                        modifier = Modifier.size(24.dp), // Adjust size if needed
+                        tint = Color.Unspecified // Prevent the icon from being tinted
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("Go to Calories")
+                }
+
                 // MatterOfChoice Button
                 Button(
                     onClick = { navController.navigate("matterOfChoice") },

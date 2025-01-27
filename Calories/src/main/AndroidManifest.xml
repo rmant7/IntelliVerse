@@ -40,7 +40,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_school_killer_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SchoolKiller"
+        android:theme="@style/Theme.Calories"
+        tools:replace="android:theme"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustPan"
         tools:targetApi="35">
