@@ -1,4 +1,4 @@
-package com.calories.presentation.common.dialog
+package com.example.shared.presentation.common.dialog
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.calories.R
+import com.example.shared.R
 
 @Composable
 fun PermissionRequestDialog(

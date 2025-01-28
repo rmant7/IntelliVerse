@@ -74,6 +74,9 @@ dependencies {
     //Markdown to Html
     implementation(libs.markdown)
 
+    // Coil
+    implementation(libs.coil.compose)
+
     // LangChain4j
     implementation(libs.dev.langchain4j.langchain4j.open.ai)
     implementation(libs.langchain4j)

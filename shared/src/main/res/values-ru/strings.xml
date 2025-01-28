@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Shared</string>
+
+    // Drop Down Menu Entries
+    <string-array name="grades">
+        <item>Не важно</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="explanations">
+        <!-- Unused
+        <item>Без объяснения</item>-->
+        <item>Краткое объяснение</item>
+        <item>Подробное объяснение</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>Сфотографировать</item>
+        <item>Загрузить изображение</item>
+        <item>Загрузить файл</item>
+        <item>Предоставить ссылку</item>
+    </string-array>
+
+    //Error
+    <string name="error_service_not_available">Извините, сервис не доступен на территории РФ и Белорусии, пожалуйста, используйте vpn.</string>
+    <string name="error_service_not_available_title">Сервис недоступен</string>
+    <string name="error_common_title">Ошибка</string>
+    <string name="error_common_message">Во время работы приложения произошла ошибка. Попробуйте обновить приложение или повторить попытку позднее</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">Упс! Кажется, для этой функции нужен доступ к камере. Зайдите в настройки устройства, найдите IntelliVerse в списке приложений и предоставьте разрешение на использование камеры, чтобы раскрыть всю магию!</string>
+    <string name="permanent_denied_read_media_permission_explanation">Упс! Чтобы использовать изображения из вашей галереи, IntelliVerse нуждается в разрешении на чтение ваших фотографий. Зайдите в настройки устройства, найдите IntelliVerse в списке приложений и предоставьте доступ к фотографиям, чтобы раскрыть всю магию!</string>
+    <string name="permanent_denied_write_storage_permission_explanation">Упс! Чтобы сохранять файлы на ваше устройство, IntelliVerse нуждается в разрешении на запись в ваше хранилище. Зайдите в настройки устройства, найдите IntelliVerse в списке приложений и предоставьте доступ к хранилищу, чтобы раскрыть всю магию!</string>
+    <string name="permanent_denied_read_storage_permission_explanation">Упс! Чтобы получить доступ к файлам на вашем устройстве, IntelliVerse нуждается в разрешении на чтение вашего хранилища. Зайдите в настройки устройства, найдите IntelliVerse в списке приложений и предоставьте доступ к хранилищу, чтобы раскрыть всю магию!</string>
+    <string name="camera_permission_rationale">IntelliVerse нуждается в доступе к вашей камере, чтобы вы могли мгновенно фотографировать свои школьные задания!</string>
+    <string name="read_media_permission_rationale">Предоставление доступа к вашим фотографиям позволяет вам выбирать изображения из галереи для использования в приложении IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">Разрешение на запись в ваше хранилище позволяет приложению IntelliVerse сохранять файлы, такие как сделанные вами фотографии, прямо на ваше устройство!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse нуждается в доступе к хранилищу вашего устройства для чтения файлов, таких как фотографии или документы, которые вы можете захотеть использовать в приложении</string>
+
+    // Buttons Labels
+    <string name="Ok">Ок</string>
+
+</resources>

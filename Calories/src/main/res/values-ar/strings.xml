@@ -23,7 +23,6 @@
     <string name="start_again">ابدأ من جديد</string>
     <string name="try_again">حاول مرة اخرى</string>
     <string name="pick_images">اختر الصور</string>
-    <string name="Ok">حسنا.</string>
 
     // Text Field Labels
     <string name="recognize_text_button_label">التعرف على النص</string>
@@ -43,48 +42,9 @@
     <string name="upload_a_file_label">تحميل ملف</string>
     <string name="explanations_label">شرح</string>
     <string name="grade_label">الصف</string>
-	
-    // Drop Down Menu Entries
-    <string-array name="grades">
-        <item>غير مهم</item>
-        <item>أول</item>
-        <item>ثاني</item>
-        <item>ثالث</item>
-        <item>رابع</item>
-        <item>خامس</item>
-        <item>سادس</item>
-        <item>سابع</item>
-        <item>ثامن</item>
-        <item>تاسع</item>
-        <item>عاشر</item>
-        <item>حادي عشر</item>
-        <item>ثاني عشر</item>
-    </string-array>
-
-    // Drop Down Menu Entries
-    <string-array name="explanations">
-        <!-- Unused
-        <item>شرح موجز</item>-->
-        <item>شرح قصير</item>
-        <item>شرح مفصل</item>
-    </string-array>
-
-	<string-array name="upload_file_methods">
-        <item> </item>
-        <item>قم بالتقاط صورة</item>
-        <item>قم بتحميل صورة</item>
-        <item>قم بتحميل ملف</item>
-        <item>قم بتحميل رابط</item>
-    </string-array>
 
     // Dialog text messages
     <string name="invalid_images_message">يبدو أنك قمت بحذف بعض الصور من مساحة تخزين مكتبة التطبيق. لا تقلق، سيحاول التطبيق مسح هذه الصور واحدة تلو الأخرى من ذاكرة التخزين المؤقت للتطبيق. يرجى تأكيد حذف كل صورة، إذا لزم الأمر. هل تريد الاستمرار؟</string>
-
-    //Errors
-    <string name="error_service_not_available">عذرًا، الخدمة غير متوفرة في روسيا وبيلاروسيا، يرجى استخدام vpn</string>
-    <string name="error_service_not_available_title">الخدمة غير متوفرة</string>
-    <string name="error_common_title">هنالك خطأ ما</string>
-    <string name="error_common_message">هنالك خطأ ما, حاول في وقت اخر</string>
 
     // Toast
     <string name="error_gemini_solution_result_extraction">لم يتمكن البرنامج من حل هذه المشكلة. من فضلك، حاول مرة أخرى.</string>
@@ -92,14 +52,6 @@
     <string name="fail_to_load_Uri">فشل تحميل الصورة إلى القائمة. يرجى محاولة تحميله يدويًا!</string>
     <string name="corrupted_loaded_file">لقد قمت بتحميل ملف تالف!</string>
     <string name="camera_fail_to_open">أووبس! حدث خطأ ما في الكاميرا. يرجى المحاولة مرة أخرى!</string>
-    <string name="permanent_denied_camera_permission_explanation">أووبس! يبدو أن الوصول إلى الكاميرا مطلوب لهذه الميزة. انتقل إلى إعدادات جهازك، وابحث عن التطبيق في قائمة التطبيقات الخاصة بك، وامنح الكاميرا إذنًا لبدء السحر!</string>
-    <string name="permanent_denied_read_media_permission_explanation">أووبس! يبدو أن الوصول إلى الصور مطلوب لهذه الميزة. انتقل إلى إعدادات جهازك، وابحث عن التطبيق في قائمة التطبيقات الخاصة بك، وامنح ملف الصور إذنًا لبدء السحر</string>
-    <string name="permanent_denied_write_storage_permission_explanation">أووبس! يبدو أن الوصول إلى الصور مطلوب لهذه الميزة. انتقل إلى إعدادات جهازك، وابحث عن التطبيق في قائمة التطبيقات الخاصة بك، وامنح ملف الصور إذنًا لبدء السحر!</string>
-    <string name="permanent_denied_read_storage_permission_explanation">أووبس! لحفظ الملفات على جهازك، يحتاج التطبيق للوصول الى مساحة التخزين. انتقل الى الاعدادات وابحث عن التطبيق في قائمة التطبيقات وامنح حق الوصول الى مساحة التخزين لبدء السحر.</string>
-    <string name="camera_permission_rationale"> تحتاج إلى الوصول إلى الكاميرا الخاصة بك حتى تتمكن من التقاط صور الملفات المدرسية</string>
-    <string name="read_media_permission_rationale"> الوصول إلى صورك يتيح تحديد الصور من معرض الصور الخاص بك لاستخدامها داخل تطبيق SchoolKiller!</string>
-    <string name="write_storage_permission_rationale"> يسمح إذن الكتابة بحفظ الملفات مثل الصور الملتقطة داخل التطبيق مباشرة الى جهازك</string>
-    <string name="read_storage_permission_rationale">البرنامج يحتاج للوصول الى الملفات والصور في الجهاز التي قد ترغب باستخدامها في التطبيق </string>
     <string name="upload_image_warning">يرجى تحميل الصورة من الجهاز.</string>
     <string name="select_image_or_text_warning">الرجاء اختيار صورة أو كتابة مهمة بسيطة.</string>
     <string name="upload_from_url">تحميل</string>

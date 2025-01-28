@@ -1,4 +1,4 @@
-package com.calories.presentation.common.image
+package com.example.shared.presentation.common.image
 
 import android.content.Context
 import android.content.res.Configuration

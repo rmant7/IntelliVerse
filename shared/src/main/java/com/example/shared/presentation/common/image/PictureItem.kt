@@ -1,4 +1,4 @@
-package com.calories.presentation.common.image
+package com.example.shared.presentation.common.image
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -33,7 +33,7 @@ import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.request.SuccessResult
-import com.calories.R
+import com.example.shared.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat

@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Shared</string>
+
+    // Drop Down Menu Entries
+    <string-array name="grades">
+        <item>כל הכיתות</item>
+        <item>א</item>
+        <item>ב</item>
+        <item>ג</item>
+        <item>ד</item>
+        <item>ה</item>
+        <item>ו</item>
+        <item>ז</item>
+        <item>ח</item>
+        <item>ט</item>
+        <item>י</item>
+        <item>יא</item>
+        <item>יב</item>
+    </string-array>
+
+    // Drop Down Menu Entries
+    <string-array name="explanations">
+        <!-- Unused
+        <item>ללא הסבר</item>-->
+        <item>הסבר קצר</item>
+        <item>הסבר מפורט</item>
+    </string-array>
+
+    <string-array name="upload_file_methods">
+        <item> </item>
+        <item>צלם תמונה</item>
+        <item>העלה תמונה</item>
+        <item>העלה קובץ</item>
+        <item>ספק קישור</item>
+    </string-array>
+
+    // Errors
+    <string name="error_service_not_available">מצטערים, השירות אינו זמין ברוסיה ובבלרוס, אנא השתמש ב-vpn</string>
+    <string name="error_service_not_available_title">השירות אינו זמין</string>
+    <string name="error_common_title">שְׁגִיאָה</string>
+    <string name="error_common_message">אירעה שגיאה בזמן שהאפליקציה פעלה. נסה לעדכן את האפליקציה או נסה שוב מאוחר יותר</string>
+
+    // Toast Messages
+    <string name="permanent_denied_camera_permission_explanation">אופס! כדי לגשת למצלמה במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת המצלמה.</string>
+    <string name="permanent_denied_read_media_permission_explanation">אופס! כדי לגשת לגלריה במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת הגלריה.</string>
+    <string name="permanent_denied_write_storage_permission_explanation">אופס! כדי לשמור קבצים במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת השמירה לאחסון.</string>
+    <string name="permanent_denied_read_storage_permission_explanation">אופס! כדי לגשת לקבצים במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת קריאת לאחסון.</string>
+    <string name="camera_permission_rationale">האפליקציה זקוקה לגישה למצלמה כדי לאפשר לך לצלם</string>
+    <string name="read_media_permission_rationale">מתן גישה לתמונות שלך מאפשר לך לבחור תמונות מהגלריה שלך לשימוש בתוך אפליקציית IntelliVerse!</string>
+    <string name="write_storage_permission_rationale">הרשאה לכתיבה לאחסון שלך מאפשרת לאפליקציית IntelliVerse לשמור קבצים, כמו תמונות שצילמת, ישירות למכשיר שלך!</string>
+    <string name="read_storage_permission_rationale">IntelliVerse זקוקה לגישה לאחסון של המכשיר שלך כדי לקרוא קבצים, כמו תמונות או מסמכים, שברצונך להשתמש בהם באפליקציה</string>
+
+    // Buttons Labels
+    <string name="Ok">בסדר</string>
+
+</resources>

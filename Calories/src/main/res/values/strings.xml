@@ -25,7 +25,6 @@
     <string name="start_again">Start again</string>
     <string name="try_again">Try again</string>
     <string name="pick_images">Pick Images</string>
-    <string name="Ok">OK</string>
     <string name="upload_from_url">Upload</string>
     <string name="upload_picture">Upload Picture</string>
     <string name="take_a_picture">Take a Picture</string>
@@ -47,31 +46,11 @@
     <string name="explanations_label">Explanations</string>
     <string name="grade_label">"Grade"</string>
 
-    <string-array name="grades">
-        <item>Not relevant</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-    </string-array>
-
     // Dialog text messages
     <string name="invalid_images_message">It seems you have deleted some images from the SchoolKiller app\'s directory storage. Not to worry, SchoolKiller will attempt to clear these images one by one from the application cache. Please confirm each image deletion, if needed. Any image that appears blank is a corrupted one. Do you want to proceed?</string>
 
 
     // Errors
-    <string name="error_service_not_available">Sorry, service is not available in Russia and Belarus, please use vpn</string>
-    <string name="error_service_not_available_title">Service is not available</string>
-    <string name="error_common_title">Error</string>
-    <string name="error_common_message">An error occurred while the application was running. Try updating the app or try again later</string>
     <string name="error_gemini_ocr_result_extraction">AI wasn\'t able to recognize text from the image. Please, try again.</string>
     <string name="error_gemini_solution_result_extraction">AI wasn\'t able to solve this problem. Please, try again.</string>
 
@@ -80,14 +59,6 @@
     <string name="fail_to_load_Uri">Failed to load the image to the list. Please try to load it manual!</string>
     <string name="corrupted_loaded_file">You have loaded a corrupted file!</string>
     <string name="camera_fail_to_open">Whoops! Something went wrong with the camera. Please try again!</string>
-    <string name="permanent_denied_camera_permission_explanation">Whoops! Looks like camera access is needed for this feature. Head to your device settings, find SchoolKiller in your app list, and grant camera permission to unlock the magic!</string>
-    <string name="permanent_denied_read_media_permission_explanation">Whoops! To use images from your gallery, SchoolKiller needs permission to read your photos. Head to your device settings, find SchoolKiller in your app list, and grant photo access to unlock the magic!</string>
-    <string name="permanent_denied_write_storage_permission_explanation">Whoops! To save files to your device, SchoolKiller needs permission to write to your storage. Head to your device settings, find SchoolKiller in your app list, and grant storage access to unlock the magic!</string>
-    <string name="permanent_denied_read_storage_permission_explanation">Whoops! To access files on your device, SchoolKiller needs permission to read your storage. Head to your device settings, find SchoolKiller in your app list, and grant storage access to unlock the magic!</string>
-    <string name="camera_permission_rationale">SchoolKiller needs access to your camera so you can instantly snap photos of your school exercises!</string>
-    <string name="read_media_permission_rationale">Allowing access to your photos lets you select images from your gallery to use within the SchoolKiller app!</string>
-    <string name="write_storage_permission_rationale">Permission to write to your storage lets the SchoolKiller app save files, like photos you\'ve taken, right to your device!</string>
-    <string name="read_storage_permission_rationale">SchoolKiller needs access to your device\'s storage to read files, like photos or documents, that you might want to use in the app.</string>
     <string name="upload_image_warning">Please upload an image from the device</string>
     <string name="select_image_or_text_warning">Please select an image or type task.</string>
     <string name="prompt_is_empty">Recognized text is empty. Please try again!</string>

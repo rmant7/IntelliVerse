@@ -1,4 +1,4 @@
-package com.calories.presentation.common.dialog
+package com.example.shared.presentation.common.dialog
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
@@ -7,9 +7,9 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import com.calories.OutputSizeException
-import com.calories.R
-import com.calories.UnableToAssistException
+import com.example.shared.OutputSizeException
+import com.example.shared.R
+import com.example.shared.UnableToAssistException
 import dev.ai4j.openai4j.OpenAiHttpException
 import io.ktor.client.plugins.ServerResponseException
 import timber.log.Timber

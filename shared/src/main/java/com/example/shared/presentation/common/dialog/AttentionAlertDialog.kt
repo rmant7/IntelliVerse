@@ -1,4 +1,4 @@
-package com.calories.presentation.common.dialog
+package com.example.shared.presentation.common.dialog
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

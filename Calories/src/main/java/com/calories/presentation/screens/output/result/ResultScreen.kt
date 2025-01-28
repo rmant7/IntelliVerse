@@ -50,7 +50,7 @@ import com.calories.presentation.common.MediaPlayer
 import com.example.shared.presentation.common.button.RadioIndexButton
 import com.example.shared.presentation.common.button.RoundIconButton
 import com.example.shared.presentation.common.button.TextAlignmentButton
-import com.calories.presentation.common.dialog.ErrorAlertDialog
+import com.example.shared.presentation.common.dialog.ErrorAlertDialog
 import com.example.shared.presentation.common.web_view.HtmlTextView
 import com.example.shared.presentation.common.web_view.cleanHtmlStr
 

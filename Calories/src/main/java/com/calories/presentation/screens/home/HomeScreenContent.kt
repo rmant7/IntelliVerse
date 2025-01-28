@@ -40,7 +40,7 @@ import com.example.shared.presentation.common.ApplicationScaffold
 import com.example.shared.presentation.common.StaticLabelTextField
 import com.example.shared.presentation.common.button.RoundIconButton
 import com.example.shared.presentation.common.button.UniversalButton
-import com.calories.presentation.common.image.PictureItem
+import com.example.shared.presentation.common.image.PictureItem
 import java.util.Locale
 
 

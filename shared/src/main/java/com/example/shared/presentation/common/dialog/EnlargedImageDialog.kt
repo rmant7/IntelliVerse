@@ -1,4 +1,4 @@
-package com.calories.presentation.common.dialog
+package com.example.shared.presentation.common.dialog
 
 import android.net.Uri
 import androidx.compose.foundation.Image
@@ -26,8 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
-import com.calories.R
-import com.calories.presentation.common.image.uriToBitmap
+import com.example.shared.R
 
 @Composable
 fun EnlargedImageDialog(

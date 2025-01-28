@@ -41,7 +41,7 @@ import com.example.shared.presentation.common.ApplicationScaffold
 import com.example.shared.presentation.common.button.RadioIndexButton
 import com.example.shared.presentation.common.button.TextAlignmentButton
 import com.example.shared.presentation.common.button.UniversalButton
-import com.calories.presentation.common.dialog.ErrorAlertDialog
+import com.example.shared.presentation.common.dialog.ErrorAlertDialog
 import com.example.shared.presentation.common.web_view.HtmlTextView
 import com.example.shared.presentation.common.web_view.cleanHtmlStr
 

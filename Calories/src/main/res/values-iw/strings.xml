@@ -23,7 +23,6 @@
     <string name="start_again">התחל מחדש</string>
     <string name="try_again">נסה שוב</string>
     <string name="pick_images">בחר תמונות</string>
-    <string name="Ok">בסדר.</string>
 
     // Text Field Labels
     <string name="recognize_text_button_label">הצג טקסט מזוהה</string>
@@ -43,48 +42,9 @@
     <string name="upload_a_file_label">העלאת קובץ</string>
     <string name="explanations_label">הסברים</string>
     <string name="grade_label">כיתה</string>
-	
-    // Drop Down Menu Entries
-    <string-array name="grades">
-        <item>כל הכיתות</item>
-        <item>א</item>
-        <item>ב</item>
-        <item>ג</item>
-        <item>ד</item>
-        <item>ה</item>
-        <item>ו</item>
-        <item>ז</item>
-        <item>ח</item>
-        <item>ט</item>
-        <item>י</item>
-        <item>יא</item>
-        <item>יב</item>
-    </string-array>
-
-    // Drop Down Menu Entries
-    <string-array name="explanations">
-        <!-- Unused
-        <item>ללא הסבר</item>-->
-        <item>הסבר קצר</item>
-        <item>הסבר מפורט</item>
-    </string-array>
-
-	<string-array name="upload_file_methods">
-        <item> </item>
-        <item>צלם תמונה</item>
-        <item>העלה תמונה</item>
-        <item>העלה קובץ</item>
-        <item>ספק קישור</item>
-    </string-array>
 
     // Dialog text messages
     <string name="invalid_images_message">נראה כי מחקת תמונות מאחסון הספריות של האפליקצייה. אל דאגה, האפליקציה תסיר את התמונות הפגומות מהמטמון שלה. אנא אשר את מחיקת כל תמונה לפי הצורך. תמונה ריקה נחשבת לפגומה. האם ברצונך להמשיך?</string>
-
-    //Errors
-    <string name="error_service_not_available">מצטערים, השירות אינו זמין ברוסיה ובבלרוס, אנא השתמש ב-vpn</string>
-    <string name="error_service_not_available_title">השירות אינו זמין</string>
-    <string name="error_common_title">שְׁגִיאָה</string>
-    <string name="error_common_message">אירעה שגיאה בזמן שהאפליקציה פעלה. נסה לעדכן את האפליקציה או נסה שוב מאוחר יותר</string>
 
     // Toast
     <string name="error_gemini_solution_result_extraction">AI לא הצליח לפתור את הבעיה הזו. בבקשה, נסה שוב.</string>
@@ -92,14 +52,6 @@
     <string name="fail_to_load_Uri">טעינת התמונה לרשימה נכשלה. אנא נסה לטעון אותה ידנית!</string>
     <string name="corrupted_loaded_file">העלית קובץ פגום!</string>
     <string name="camera_fail_to_open">אופס! משהו השתבש במצלמה. בבקשה נסה שוב!</string>
-    <string name="permanent_denied_camera_permission_explanation">אופס! כדי לגשת למצלמה במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת המצלמה.</string>
-    <string name="permanent_denied_read_media_permission_explanation">אופס! כדי לגשת לגלריה במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת הגלריה.</string>
-    <string name="permanent_denied_write_storage_permission_explanation">אופס! כדי לשמור קבצים במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת השמירה לאחסון.</string>
-    <string name="permanent_denied_read_storage_permission_explanation">אופס! כדי לגשת לקבצים במכשיר שלך, האפליקציה זקוקה להרשאה. חפש את האפליקציה ברשימת האפליקציות והפעל את הרשאת קריאת לאחסון.</string>
-    <string name="camera_permission_rationale">האפליקציה זקוקה לגישה למצלמה כדי לאפשר לך לצלם בקלות את תרדילי הבית!</string>
-    <string name="read_media_permission_rationale">מתן גישה לתמונות שלך מאפשר לך לבחור תמונות מהגלריה שלך לשימוש בתוך אפליקציית SchoolKiller!</string>
-    <string name="write_storage_permission_rationale">הרשאה לכתיבה לאחסון שלך מאפשרת לאפליקציית SchoolKiller לשמור קבצים, כמו תמונות שצילמת, ישירות למכשיר שלך!</string>
-    <string name="read_storage_permission_rationale">SchoolKiller זקוקה לגישה לאחסון של המכשיר שלך כדי לקרוא קבצים, כמו תמונות או מסמכים, שברצונך להשתמש בהם באפליקציה</string>
     <string name="upload_image_warning">אנא העלה תמונה מהמכשיר.</string>
     <string name="select_image_or_text_warning">אנא בחר תמונה או הקלד משימה.</string>
     <string name="upload_from_url">העלה קישור</string>

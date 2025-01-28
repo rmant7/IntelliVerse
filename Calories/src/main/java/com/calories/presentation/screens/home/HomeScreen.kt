@@ -23,9 +23,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.lifecycle.viewModelScope
 import com.calories.R
-import com.calories.presentation.common.dialog.EnlargedImageDialog
-import com.calories.presentation.common.dialog.PermissionMessageRationale
-import com.calories.presentation.common.dialog.PermissionRequestDialog
+import com.example.shared.presentation.common.dialog.EnlargedImageDialog
+import com.example.shared.presentation.common.dialog.PermissionMessageRationale
+import com.example.shared.presentation.common.dialog.PermissionRequestDialog
 import com.example.shared.presentation.permissions.PermissionSet
 import kotlinx.coroutines.launch
 import timber.log.Timber
