@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SchoolKiller</string>
+    <string name="app_name">calories</string>
 
     // Content Descriptions
     <string name="ai_school_assistant_image_content_description">AI School Assistant Image</string>
@@ -82,6 +82,6 @@
     <string name="install_language">התקן שפה</string>
 
     <string name="user_task_value">משימה</string>
-    <string name="solved_by_schoolkiller">נפתר על ידי SchoolKiller\nבדוק את האפליקציה שלנו ב-Google Play</string>
+    <string name="solved_by_calories">נפתר על ידי calories\nבדוק את האפליקציה שלנו ב-Google Play</string>
 
 </resources>

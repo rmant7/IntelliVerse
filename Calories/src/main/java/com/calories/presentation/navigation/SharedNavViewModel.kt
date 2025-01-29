@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SharedNavViewModelCalories @Inject constructor() : ViewModel() {
+class SharedNavViewModel @Inject constructor() : ViewModel() {
     var lastMathRoute: String? = null
     // for each type of screen, keeps the last version of that screen that was visited
     val lastScreensVersions = mutableStateListOf<Screen>()

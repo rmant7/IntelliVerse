@@ -2,7 +2,6 @@ package com.calories.presentation.navigation
 
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -12,24 +11,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -37,6 +27,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
@@ -47,6 +38,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.calories.R
 import com.example.shared.presentation.common.ApplicationScaffold
 import com.calories.presentation.screens.output.SharedViewModel
 import com.calories.presentation.screens.home.HomeScreen
@@ -56,10 +48,11 @@ import com.calories.presentation.screens.output.ocr.OcrViewModel
 import com.calories.presentation.screens.output.result.ResultScreen
 import com.calories.presentation.screens.output.result.ResultViewModel
 import timber.log.Timber
+import com.example.shared.presentation.AppTopBar
 
 
 @Composable
-fun Navigation(parentNavController: NavHostController, sharedNavViewModel: SharedNavViewModelCalories) {
+fun Navigation(parentNavController: NavHostController, sharedNavViewModel: SharedNavViewModel) {
     val navController = rememberNavController()
 
 
@@ -80,7 +73,7 @@ fun Navigation(parentNavController: NavHostController, sharedNavViewModel: Share
             BottomNavigationBar(navController, lastScreensVersions, sharedNavViewModel)
         },
         topBar = {
-            AppTopBar(parentNavController)
+            AppTopBar(parentNavController, stringResource(R.string.app_name))
         }
     )
 
@@ -90,7 +83,7 @@ fun Navigation(parentNavController: NavHostController, sharedNavViewModel: Share
 private fun NavigationController(
     navController: NavHostController,
     lastScreensVersions: MutableList<Screen>,
-    sharedNavViewModel: SharedNavViewModelCalories
+    sharedNavViewModel: SharedNavViewModel
 ) {
 
     val resultViewModelState: MutableState<NavBackStackEntry?> = remember {
@@ -268,7 +261,7 @@ fun BottomNavigationItem(
 fun BottomNavigationBar(
     navController: NavHostController,
     lastScreensVersions: MutableList<Screen>,
-    sharedNavViewModel: SharedNavViewModelCalories
+    sharedNavViewModel: SharedNavViewModel
 ) {
 
     val currentDestination = navController.currentBackStackEntryAsState().value?.destination?.route
@@ -302,61 +295,4 @@ fun BottomNavigationBar(
         }
     }
 
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun AppTopBar(navController: NavHostController) {
-    // State to control the visibility of the AlertDialog
-    var showDialog by remember { mutableStateOf(false) }
-
-    TopAppBar(
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            titleContentColor = MaterialTheme.colorScheme.onPrimary,
-            navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-            actionIconContentColor = MaterialTheme.colorScheme.onSecondary
-        ),
-        title = {
-            Image(
-                painter = painterResource(id = com.example.shared.R.drawable.intelliverse), // Replace with your custom drawable
-                contentDescription = "App Logo",
-                modifier = Modifier.size(40.dp) // Adjust size as needed
-            )
-        },
-        navigationIcon = {
-            IconButton(onClick = { showDialog = true }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back"
-                )
-            }
-        }
-    )
-
-    // AlertDialog
-    if (showDialog) {
-        AlertDialog(
-            onDismissRequest = { showDialog = false },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        showDialog = false
-                        navController.navigateUp() // Navigate up when confirmed
-                    }
-                ) {
-                    Text("Yes")
-                }
-            },
-            dismissButton = {
-                TextButton(
-                    onClick = { showDialog = false } // Dismiss dialog
-                ) {
-                    Text("No")
-                }
-            },
-            title = { Text("Exit SchoolKiller") },
-            text = { Text("Are you sure you want to exit SchoolKiller?") }
-        )
-    }
 }

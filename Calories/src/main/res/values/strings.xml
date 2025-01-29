@@ -47,7 +47,7 @@
     <string name="grade_label">"Grade"</string>
 
     // Dialog text messages
-    <string name="invalid_images_message">It seems you have deleted some images from the SchoolKiller app\'s directory storage. Not to worry, SchoolKiller will attempt to clear these images one by one from the application cache. Please confirm each image deletion, if needed. Any image that appears blank is a corrupted one. Do you want to proceed?</string>
+    <string name="invalid_images_message">It seems you have deleted some images from the calories app\'s directory storage. Not to worry, calories will attempt to clear these images one by one from the application cache. Please confirm each image deletion, if needed. Any image that appears blank is a corrupted one. Do you want to proceed?</string>
 
 
     // Errors
@@ -83,6 +83,6 @@
     <string name="install">Install</string>
     <string name="install_language">Install Language</string>
 
-    <string name="solved_by_schoolkiller">Solved by SchoolKiller\nCheck out our app on Google Play</string>
+    <string name="solved_by_calories">Solved by calories\nCheck out our app on Google Play</string>
 
 </resources>

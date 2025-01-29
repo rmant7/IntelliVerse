@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SchoolKiller</string>
+    <string name="app_name">calories</string>
 
     // Content Descriptions
     <string name="ai_school_assistant_image_content_description">Изображение AI School Assistant</string>
@@ -41,7 +41,7 @@
     <string name="additional_info_TextField_placeholder_text_calories">3 банана и 1 яблоко среднего размера.</string>
 
     // Dialog text messages
-    <string name="invalid_images_message">Похоже, вы удалили некоторые изображения из хранилища каталога приложения SchoolKiller. Не беспокойтесь, SchoolKiller попытается очистить эти изображения одно за другим из кеша приложения. Пожалуйста, подтвердите удаление каждого изображения, если это необходимо. Любое изображение, которое отображается пустым, является поврежденным. Вы хотите продолжить?</string>
+    <string name="invalid_images_message">Похоже, вы удалили некоторые изображения из хранилища каталога приложения calories. Не беспокойтесь, calories попытается очистить эти изображения одно за другим из кеша приложения. Пожалуйста, подтвердите удаление каждого изображения, если это необходимо. Любое изображение, которое отображается пустым, является поврежденным. Вы хотите продолжить?</string>
 
 
     // Toast
@@ -80,6 +80,6 @@
     <string name="install_language">Установить язык</string>
 
     <string name="user_task_value">Задача</string>
-    <string name="solved_by_schoolkiller">Решено с помощью SchoolKiller\nОзнакомьтесь с нашим приложением в Google Play</string>
+    <string name="solved_by_calories">Решено с помощью calories\nОзнакомьтесь с нашим приложением в Google Play</string>
 
 </resources>

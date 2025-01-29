@@ -96,7 +96,7 @@ fun ResultScreen(
     val solutionTextLabel = stringResource(R.string.solution_text_value)
     val recognizedTextLabel = stringResource(R.string.recognized_properties)
     val taskTextLabel = stringResource(R.string.user_task_value)
-    val solvedBySchoolKiller = stringResource(R.string.solved_by_schoolkiller)
+    val solvedBySchoolKiller = stringResource(R.string.solved_by_calories)
 
     val shouldShowErrorDialog = viewModel.shouldShowErrorDialog.collectAsState()
     val errors = viewModel.errors.collectAsState()
