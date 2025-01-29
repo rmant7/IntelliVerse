@@ -13,11 +13,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.intelliverse"
+    namespace = "com.intelliverse"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.intelliverse"
+        applicationId = "com.intelliverse"
         minSdk = 23
         targetSdk = 35
         versionCode = 1

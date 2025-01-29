@@ -1,4 +1,4 @@
-package com.example.intelliverse
+package com.intelliverse
 
 import org.junit.Test
 

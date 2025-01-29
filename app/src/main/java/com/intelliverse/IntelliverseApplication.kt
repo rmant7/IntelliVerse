@@ -1,8 +1,9 @@
-package com.example.intelliverse
+package com.intelliverse
 
 import android.app.Application
 import android.os.Build
 import android.webkit.WebView
+import com.intelliverse.BuildConfig
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.FirebaseApp
 import com.example.shared.ads.InterstitialAdUseCase

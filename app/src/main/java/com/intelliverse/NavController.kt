@@ -1,11 +1,11 @@
-package com.example.intelliverse
+package com.intelliverse
 
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.intelliverse.presentation.StartScreen
+import com.intelliverse.presentation.StartScreen
 import com.schoolkiller.presentation.navigation.SharedNavViewModel
 import com.calories.presentation.navigation.SharedNavViewModelCalories
 

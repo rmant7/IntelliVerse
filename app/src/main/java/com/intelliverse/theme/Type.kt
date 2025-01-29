@@ -1,4 +1,4 @@
-package com.example.intelliverse.ui.theme
+package com.intelliverse.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

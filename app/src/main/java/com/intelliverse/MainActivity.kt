@@ -1,4 +1,4 @@
-package com.example.intelliverse
+package com.intelliverse
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,7 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.ui.unit.dp
-import com.example.intelliverse.ui.theme.IntelliverseTheme
+import com.intelliverse.theme.IntelliverseTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
