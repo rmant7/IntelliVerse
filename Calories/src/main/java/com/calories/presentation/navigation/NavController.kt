@@ -73,7 +73,7 @@ fun Navigation(parentNavController: NavHostController, sharedNavViewModel: Share
             BottomNavigationBar(navController, lastScreensVersions, sharedNavViewModel)
         },
         topBar = {
-            AppTopBar(parentNavController, stringResource(R.string.app_name))
+            AppTopBar(parentNavController, stringResource(R.string.app_name_calories))
         }
     )
 

@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Shared</string>
 
     <string-array name="languages">
         <item>Amharic</item>

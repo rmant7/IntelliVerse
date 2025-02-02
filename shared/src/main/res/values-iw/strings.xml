@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Shared</string>
 
     // Drop Down Menu Entries
     <string-array name="grades">

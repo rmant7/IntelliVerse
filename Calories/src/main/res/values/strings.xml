@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Calories</string>
+    <string name="app_name_calories" translatable="false">Calories</string>
 
     // Content Descriptions
     <string name="ai_school_assistant_image_content_description">AI School Assistant Image</string>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">calories</string>
 
     // Content Descriptions
     <string name="ai_school_assistant_image_content_description">AI School Assistant Image</string>
