@@ -19,8 +19,7 @@
 
     // Drop Down Menu Entries
     <string-array name="explanations">
-        <!-- Unused
-        <item>شرح موجز</item>-->
+        <item>دون تفسير</item>-->
         <item>شرح قصير</item>
         <item>شرح مفصل</item>
     </string-array>

@@ -39,6 +39,14 @@ class SharedViewModel@Inject constructor(): ViewModel() {
         }
     }
 
+    fun solveByOcrResult(aiService: AIService, resultText: String) {
+        _ocrResults.update { emptyMap() }
+        val htmlString = TextUtils.markdownToHtml(resultText)
+        _ocrResults.update { oldMap ->
+            oldMap + (aiService to htmlString)
+        }
+    }
+
     private fun parseMarkdownTableToHtml(markdownTable: String): String {
         try {
             val rows = markdownTable.trim().split("\n")

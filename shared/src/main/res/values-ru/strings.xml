@@ -18,8 +18,7 @@
     </string-array>
 
     <string-array name="explanations">
-        <!-- Unused
-        <item>Без объяснения</item>-->
+        <item>Никаких объяснений</item>-->
         <item>Краткое объяснение</item>
         <item>Подробное объяснение</item>
     </string-array>

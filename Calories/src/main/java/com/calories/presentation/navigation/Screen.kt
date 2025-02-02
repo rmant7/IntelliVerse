@@ -3,12 +3,9 @@ package com.calories.presentation.navigation
 import android.net.Uri
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.runtime.saveable.Saver
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.calories.R
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 
 internal fun sanitize(text: String): String {
     // Allow letters (from all the languages), digits, math symbols, and common punctuation
@@ -108,18 +105,4 @@ fun MutableList<Screen>.updateOrInsert(screen: Screen) {
         this.add(screen.index, screen)
     }
 }
-
-val screenListSaver = Saver<SnapshotStateList<Screen>, List<String>>(
-    save = { stateList -> stateList.map { Json.encodeToString(Screen.serializer(), it) } },
-    restore = { list ->
-        SnapshotStateList<Screen>().apply {
-            addAll(list.map {
-                Json.decodeFromString(
-                    Screen.serializer(),
-                    it
-                )
-            })
-        }
-    }
-)
 

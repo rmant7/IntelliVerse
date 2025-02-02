@@ -19,7 +19,6 @@
 
     // Drop Down Menu Entries
     <string-array name="explanations">
-        <!-- Unused
         <item>ללא הסבר</item>-->
         <item>הסבר קצר</item>
         <item>הסבר מפורט</item>

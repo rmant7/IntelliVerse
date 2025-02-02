@@ -190,8 +190,8 @@ private fun NavigationController(
 
         composable(Screen.Ocr.createRoute()) {
             val currScreen = Screen.Ocr
-            if (resultViewModelState.value == null || sharedViewModelState.value == null) {
-                Timber.d("restoring resultViewModelState and sharedViewModelState")
+            if (ocrViewModelState.value == null || sharedViewModelState.value == null) {
+                Timber.d("restoring ocrViewModelState and sharedViewModelState")
                 val currentBackStackEntry = navController.currentBackStackEntry
                 if (currentBackStackEntry == null) {
                     Timber.d("currentBackStackEntry is null, fallback to navigate to HomeScreen")
@@ -199,7 +199,7 @@ private fun NavigationController(
                     navController.navigate(Screen.Home.createRoute())
                     return@composable
                 }
-                resultViewModelState.value = currentBackStackEntry
+                ocrViewModelState.value = currentBackStackEntry
                 sharedViewModelState.value = currentBackStackEntry
             }
 

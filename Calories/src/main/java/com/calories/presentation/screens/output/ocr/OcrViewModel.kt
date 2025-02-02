@@ -38,4 +38,11 @@ class OcrViewModel @Inject constructor() : ViewModel() {
         _ocrTextDirection.update { ocrTextDirection }
     }
 
+    private val _isOcrEdited = MutableStateFlow<Boolean>(false)
+    val isOcrEdited: StateFlow<Boolean> = _isOcrEdited
+
+    fun updateIsOcrEdited(isOcrEdited: Boolean) {
+        _isOcrEdited.update { isOcrEdited }
+    }
+
 }

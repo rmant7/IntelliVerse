@@ -25,8 +25,6 @@ import javax.inject.Singleton
 data class UploadResponse(
     @SerialName("file_url") val fileUrl: String,
     @SerialName("file_path") val filePath: String,
-    @SerialName("extracted_text") val extractedText: String,
-    @SerialName("mime_type") val mimeType: String
 ) {
     companion object {
         fun fromJson(json: String): UploadResponse {

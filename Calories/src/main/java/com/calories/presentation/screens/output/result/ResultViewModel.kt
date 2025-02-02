@@ -61,8 +61,6 @@ class ResultViewModel @Inject constructor(
     private var imageURL = ""
     private var generativeLanguageURL = ""
     private var filePath = ""
-    private val imageInstruction = "When generating a response, prioritize the textual prompt provided over any cues or conflicting information inferred from the image. " +
-            "The textual prompt serves as the primary source of instruction, and the image is only supplementary."
 
     /** Solutions max capacity */
     private var maxSolutionResultsCapacity = 0
@@ -265,7 +263,7 @@ class ResultViewModel @Inject constructor(
             }
             result.onFailure {
                 geminiClient(generateServer = false)
-                onSolutionResult(Result.failure(UnableToAssistException), AIService.GPT_WITH_IMAGE)
+                onSolutionResult(Result.failure(UnableToAssistException), AIService.GPT)
             }
         } else {
             val prompt = buildSolvingPrompt(userTask)
@@ -278,7 +276,7 @@ class ResultViewModel @Inject constructor(
                 geminiResultClient.onSuccess {
                     onSolutionResult(
                         geminiResultClient,
-                        AIService.GEMINI_TWO_WITH_TEXT
+                        AIService.GEMINI
                     )
                 }
                 geminiResultClient.onFailure {
@@ -292,14 +290,14 @@ class ResultViewModel @Inject constructor(
                     geminiResultServer.onSuccess { geminiResult ->
                         onSolutionResult(
                             Result.success(geminiResult.answers),
-                            AIService.GEMINI_TWO_WITH_TEXT
+                            AIService.GEMINI
                         )
                     }
                     geminiResultServer.onFailure { geminiResult ->
                         onSolutionResult(
                             Result.failure(
                                 geminiResult.cause ?: UnableToAssistException
-                            ), AIService.GEMINI_TWO_WITH_TEXT
+                            ), AIService.GEMINI
                         )
                     }
                 }
@@ -310,7 +308,7 @@ class ResultViewModel @Inject constructor(
                     prompt = prompt,
                     systemInstruction = "$languageInstruction $resultAtTop"
                 )
-                onSolutionResult(openAiResult, AIService.GPT_WITH_TEXT)
+                onSolutionResult(openAiResult, AIService.GPT)
             }
         }
     }
@@ -327,7 +325,7 @@ class ResultViewModel @Inject constructor(
             }
         }
         lateinit var recognizedProperties: String
-        if (sharedViewModel.ocrResults.value[AIService.GEMINI_TWO_WITH_TEXT].isNullOrBlank()) {
+        if (sharedViewModel.ocrResults.value[AIService.GEMINI].isNullOrBlank()) {
             val result = geminiUseCaseClient.generateGeminiSolution(
                 generativeLanguageUrl = listOf(generativeLanguageURL),
                 prompt = ocrPrompt,
@@ -336,7 +334,7 @@ class ResultViewModel @Inject constructor(
             )
             result.onSuccess {
                 sharedViewModel.updateOcrResults(
-                    AIService.GEMINI_TWO_WITH_TEXT,
+                    AIService.GEMINI,
                     it
                 )
                 recognizedProperties = it
@@ -346,19 +344,19 @@ class ResultViewModel @Inject constructor(
                     // fallback to generate gemini solution and ocr using the server
                     geminiServer(it)
                 } else {
-                    onSolutionResult(result, AIService.GEMINI_TWO_WITH_IMAGE)
+                    onSolutionResult(result, AIService.GEMINI)
                 }
                 return@launch
             }
         } else {
-            recognizedProperties = sharedViewModel.ocrResults.value[AIService.GEMINI_TWO_WITH_TEXT]!!
+            recognizedProperties = sharedViewModel.ocrResults.value[AIService.GEMINI]!!
         }
         val clientResult = geminiUseCaseClient.generateGeminiSolution(
             prompt = buildSolvingPrompt(TextUtils.htmlToJsonString(recognizedProperties) + addProperties(userTask)),
             systemInstruction = "$languageInstruction $resultAtTop",
             modelName = GeminiApiService.GeminiModel.GEMINI_FLASH_2_0_EXP
         )
-        onSolutionResult(clientResult, AIService.GEMINI_TWO_WITH_IMAGE)
+        onSolutionResult(clientResult, AIService.GEMINI)
     }
 
     private suspend fun geminiServer(clientFailure: Throwable) {
@@ -366,19 +364,19 @@ class ResultViewModel @Inject constructor(
             onSolutionResult(
                 Result.failure(
                     IllegalStateException("Expected filePath to be not empty")
-                ), AIService.GEMINI_TWO_WITH_IMAGE
+                ), AIService.GEMINI
             )
         }
         val geminiResultServer = geminiUseCase.processGeminiFile(filePath, userTask, detailsLevel, selectedLanguage.locale)
         geminiResultServer.onSuccess { geminiData ->
-            sharedViewModel.updateOcrResults(AIService.GEMINI_TWO_WITH_TEXT, geminiData.extractedText)
-            onSolutionResult(Result.success(geminiData.answers), AIService.GEMINI_TWO_WITH_IMAGE)
+            sharedViewModel.updateOcrResults(AIService.GEMINI, geminiData.extractedText)
+            onSolutionResult(Result.success(geminiData.answers), AIService.GEMINI)
         }
         geminiResultServer.onFailure { serverResult ->
             onSolutionResult(
                 Result.failure(
                     serverResult.cause ?: clientFailure.cause ?: UnableToAssistException
-                ), AIService.GEMINI_TWO_WITH_IMAGE
+                ), AIService.GEMINI
             )
         }
     }
@@ -388,28 +386,28 @@ class ResultViewModel @Inject constructor(
             onSolutionResult(
                 Result.failure(
                     UnableToAssistException
-                ), AIService.GPT_WITH_IMAGE
+                ), AIService.GPT
             )
             return@launch
         }
         lateinit var recognizedProperties: String
-        if (sharedViewModel.ocrResults.value[AIService.GPT_WITH_TEXT].isNullOrBlank()) {
+        if (sharedViewModel.ocrResults.value[AIService.GPT].isNullOrBlank()) {
             val result = openAiUseCase.generateOpenAiSolution(
                 fileURL = imageURL,
                 prompt = ocrPrompt,
                 systemInstruction = "$languageInstruction $resultOnly"
             )
-            result.onSuccess { sharedViewModel.updateOcrResults(AIService.GPT_WITH_TEXT, it); recognizedProperties = it }
+            result.onSuccess { sharedViewModel.updateOcrResults(AIService.GPT, it); recognizedProperties = it }
             result.onFailure { return@launch }
         } else {
-            recognizedProperties = sharedViewModel.ocrResults.value[AIService.GPT_WITH_TEXT]!!
+            recognizedProperties = sharedViewModel.ocrResults.value[AIService.GPT]!!
         }
         val result = openAiUseCase.generateOpenAiSolution(
             fileURL = null,
             prompt = buildSolvingPrompt(TextUtils.htmlToJsonString(recognizedProperties) + addProperties(userTask)),
             systemInstruction = "$languageInstruction $resultAtTop"
         )
-        onSolutionResult(result, AIService.GPT_WITH_IMAGE)
+        onSolutionResult(result, AIService.GPT)
     }
 
     // When AI solution result fetched

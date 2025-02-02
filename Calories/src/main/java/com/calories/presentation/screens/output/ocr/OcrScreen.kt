@@ -61,7 +61,7 @@ fun OcrScreenContent(
 
     val focusManager = LocalFocusManager.current
     val webView: MutableState<WebView?> = remember { mutableStateOf(null) }
-    val isOcrEdited = remember { mutableStateOf(false) }
+    val isOcrEdited = viewModel.isOcrEdited.collectAsState()
 
     val ocrError = viewModel.error.collectAsState()
     val shouldShowErrorMessage = remember { mutableStateOf(true) }
@@ -122,7 +122,7 @@ fun OcrScreenContent(
                         onWebViewCreated = { createdWebView ->
                             webView.value = createdWebView // Capture the WebView instance
                         },
-                        onEdit = { isOcrEdited.value = true }
+                        onEdit = { viewModel.updateIsOcrEdited(true) }
                     )
                     isWebViewReload.value = false
 
@@ -184,11 +184,7 @@ fun OcrScreenContent(
                 ) {
                     webView.value?.evaluateJavascript("getContent()") { latestValue ->
                         val newOcrResult = cleanHtmlStr(latestValue)
-                        // update all the ocr results to reflect the new edited ocr
-                        // should consider from now on displaying only one of them
-                        ocrResults.value.keys.forEach { aiService ->
-                            viewModel.sharedViewModel.updateOcrResults(aiService, newOcrResult)
-                        }
+                        viewModel.sharedViewModel.solveByOcrResult(selectedOcrService.value!!, newOcrResult)
                         onNavigateToResultScreen() // Navigate with the latest value
                     }
                 }
