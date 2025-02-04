@@ -20,6 +20,7 @@ import com.example.shared.domain.usecases.AudioPlayer
 import com.example.shared.domain.usecases.ImageUtils
 import com.example.shared.ads.InterstitialAdUseCase
 import com.calories.presentation.screens.output.SharedViewModel
+import com.example.shared.domain.prompt.options.ExplanationLevelOption
 import com.example.shared.presentation.screens.AIService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +29,15 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
+import org.json.JSONObject
 import java.util.Locale
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
 
 
@@ -60,10 +69,12 @@ class ResultViewModel @Inject constructor(
     var passedImageUri: Uri? = null
     private var imageURL = ""
     private var generativeLanguageURL = ""
+    private var passedProperties: String = ""
     private var filePath = ""
 
     /** Solutions max capacity */
     private var maxSolutionResultsCapacity = 0
+    private val geminiAttempts: AtomicInteger = AtomicInteger(0)
 
     init {
         val selectedLanguageIndex = savedStateHandle.get<Int>("selectedLanguageIndex") ?: 0
@@ -76,6 +87,7 @@ class ResultViewModel @Inject constructor(
 
         savedStateHandle.get<String>("userTask")?.let { userTask = it }
         savedStateHandle.get<String>("detailsLevel")?.let { detailsLevel = it }
+        savedStateHandle.get<String>("passedEditedOcr")?.let { passedProperties = it }
         val uri = savedStateHandle.get<String>("passedImageUri")
         if (!uri.isNullOrBlank()) {
             passedImageUri = Uri.parse(uri)
@@ -92,11 +104,25 @@ class ResultViewModel @Inject constructor(
     private fun buildSolvingPrompt(properties: String): String {
 
         val solvingPrompt = StringBuilder()
-            .append("$properties\n\n")
-            .append("Given those details above:\n")
+            .append("You have the following properties: $properties\n\n")
+            .append("Given these properties:\n")
             .append("$basicTasks\n")
-            .append("3. Show the solution step-by-step and explain the assumptions and reasoning $detailsLevel.\n")
-            .append("4. Provide macronutrient details (calories, protein, fat, and carbohydrates) for the foods based on typical nutritional information.")
+            .append(
+                when (detailsLevel) {
+                    ExplanationLevelOption.DETAILED_EXPLANATION.detailsLevel -> {
+                        "- Show the solutions step-by-step and explain the assumptions and reasoning $detailsLevel.\n"
+                    }
+                    ExplanationLevelOption.NO_EXPLANATION.detailsLevel -> {
+                        "- Provide final solutions only.\n"
+                    }
+                    ExplanationLevelOption.SHORT_EXPLANATION.detailsLevel -> {
+                        "- Provide solutions briefly.\n"
+                    }
+                    else -> { throw IllegalStateException("Illegal details level inside ResultViewModel") }
+                }
+            )
+            .append("- Provide macronutrient details (protein, fat, and carbohydrates), micronutrient details (vitamins, minerals) for the foods based on typical nutritional information.\n")
+            .append("$resultAtTop $clearFormatting")
 
         return solvingPrompt.toString()
     }
@@ -250,70 +276,35 @@ class ResultViewModel @Inject constructor(
         clearErrors()
         updateSelectedSolutionService(null)
         updateSolutionProgress(0.0f)
-
         val hasImage = passedImageUri != null
 
         if (hasImage) {
-            val result = googleDisk.upload(passedImageUri!!)
-            result.onSuccess { uploadResponse ->
-                imageURL = uploadResponse.fileUrl
-                filePath = uploadResponse.filePath
-                geminiClient(generateServer = true)
-                gpt()
-            }
-            result.onFailure {
-                geminiClient(generateServer = false)
-                onSolutionResult(Result.failure(UnableToAssistException), AIService.GPT)
-            }
+            geminiAttempts.set(1)
+            geminiClient()
         } else {
+            geminiAttempts.set(2)
             val prompt = buildSolvingPrompt(userTask)
             launch(Dispatchers.IO) {
                 val geminiResultClient = geminiUseCaseClient.generateGeminiSolution(
                     prompt = prompt,
-                    systemInstruction = "$languageInstruction $resultAtTop",
+                    systemInstruction = languageInstruction,
                     modelName = GeminiApiService.GeminiModel.GEMINI_FLASH_2_0_EXP
                 )
-                geminiResultClient.onSuccess {
-                    onSolutionResult(
-                        geminiResultClient,
-                        AIService.GEMINI
-                    )
-                }
-                geminiResultClient.onFailure {
-                    // backup- use the server
-                    val geminiResultServer = geminiUseCase.processGeminiFile(
-                        filePath = "",
-                        userTask,
-                        detailsLevel,
-                        selectedLanguage.locale
-                    )
-                    geminiResultServer.onSuccess { geminiResult ->
-                        onSolutionResult(
-                            Result.success(geminiResult.answers),
-                            AIService.GEMINI
-                        )
-                    }
-                    geminiResultServer.onFailure { geminiResult ->
-                        onSolutionResult(
-                            Result.failure(
-                                geminiResult.cause ?: UnableToAssistException
-                            ), AIService.GEMINI
-                        )
-                    }
-                }
+                onSolutionResult(geminiResultClient, AIService.GEMINI)
             }
+            geminiServer("$prompt $languageInstruction")
             launch(Dispatchers.IO) {
                 val openAiResult = openAiUseCase.generateOpenAiSolution(
                     fileURL = null,
                     prompt = prompt,
-                    systemInstruction = "$languageInstruction $resultAtTop"
+                    systemInstruction = languageInstruction
                 )
                 onSolutionResult(openAiResult, AIService.GPT)
             }
         }
     }
 
-    private fun geminiClient(generateServer: Boolean) = viewModelScope.launch(Dispatchers.IO) {
+    private fun geminiClient() = viewModelScope.launch(Dispatchers.IO) {
         if (generativeLanguageURL.isBlank()) {
             val fileByteArray = imageUtils.convertUriToByteArray(passedImageUri!!)
             if (fileByteArray != null) {
@@ -324,60 +315,80 @@ class ResultViewModel @Inject constructor(
                 uploadResult.onSuccess { generativeLanguageURL = it }
             }
         }
-        lateinit var recognizedProperties: String
-        if (sharedViewModel.ocrResults.value[AIService.GEMINI].isNullOrBlank()) {
+        var recognizedProperties = ""
+        if (passedProperties.isBlank() && sharedViewModel.ocrResults.value[AIService.GEMINI].isNullOrBlank()) {
             val result = geminiUseCaseClient.generateGeminiSolution(
                 generativeLanguageUrl = listOf(generativeLanguageURL),
                 prompt = ocrPrompt,
-                systemInstruction = "$languageInstruction $resultOnly",
+                systemInstruction = "$languageInstruction $noSummaries",
                 modelName = GeminiApiService.GeminiModel.GEMINI_FLASH_2_0_EXP
             )
             result.onSuccess {
                 sharedViewModel.updateOcrResults(
                     AIService.GEMINI,
-                    it
+                    it,
+                    override = false
                 )
                 recognizedProperties = it
             }
             result.onFailure {
-                if (generateServer) {
-                    // fallback to generate gemini solution and ocr using the server
-                    geminiServer(it)
-                } else {
-                    onSolutionResult(result, AIService.GEMINI)
-                }
+                onSolutionResult(result, AIService.GEMINI)
                 return@launch
             }
-        } else {
-            recognizedProperties = sharedViewModel.ocrResults.value[AIService.GEMINI]!!
         }
         val clientResult = geminiUseCaseClient.generateGeminiSolution(
-            prompt = buildSolvingPrompt(TextUtils.htmlToJsonString(recognizedProperties) + addProperties(userTask)),
-            systemInstruction = "$languageInstruction $resultAtTop",
+            prompt = buildSolvingPrompt(
+                passedProperties.ifBlank {
+                    "${TextUtils.htmlToJsonString(recognizedProperties)} ${
+                        addProperties(
+                            userTask,
+                            recognizedProperties.isNotBlank()
+                        )
+                    }"
+                }
+            ),
+            systemInstruction = languageInstruction,
             modelName = GeminiApiService.GeminiModel.GEMINI_FLASH_2_0_EXP
         )
         onSolutionResult(clientResult, AIService.GEMINI)
     }
 
-    private suspend fun geminiServer(clientFailure: Throwable) {
-        if (filePath.isBlank()) {
-            onSolutionResult(
-                Result.failure(
-                    IllegalStateException("Expected filePath to be not empty")
-                ), AIService.GEMINI
-            )
-        }
-        val geminiResultServer = geminiUseCase.processGeminiFile(filePath, userTask, detailsLevel, selectedLanguage.locale)
-        geminiResultServer.onSuccess { geminiData ->
-            sharedViewModel.updateOcrResults(AIService.GEMINI, geminiData.extractedText)
-            onSolutionResult(Result.success(geminiData.answers), AIService.GEMINI)
-        }
-        geminiResultServer.onFailure { serverResult ->
-            onSolutionResult(
-                Result.failure(
-                    serverResult.cause ?: clientFailure.cause ?: UnableToAssistException
-                ), AIService.GEMINI
-            )
+    /**
+     * API call to Gemini using server.
+     */
+    private fun geminiServer(prompt: String) = viewModelScope.launch(Dispatchers.IO) {
+
+        val endPoint = "https://moc.pythonanywhere.com/converse"
+        val httpClient = OkHttpClient.Builder()
+            .connectTimeout(300, TimeUnit.SECONDS)
+            .readTimeout(300, TimeUnit.SECONDS)
+            .writeTimeout(300, TimeUnit.SECONDS)
+            .build()
+
+        // JSON payload
+        val jsonObject = JSONObject()
+        jsonObject.put("text", prompt)
+
+        val requestBody = jsonObject.toString().toRequestBody("application/json".toMediaTypeOrNull())
+
+        val request = Request.Builder()
+            .url(endPoint)
+            .post(requestBody)
+            .build()
+
+        val response: Response = httpClient.newCall(request).execute()
+
+        if (response.isSuccessful) {
+            val responseBody = response.body?.string()
+            val result = responseBody?.let { JSONObject(responseBody).getString("response") }
+            if (result != null) {
+                onSolutionResult(Result.success(result), AIService.GEMINI)
+            }
+            else {
+                onSolutionResult(Result.failure(com.example.shared.UnableToAssistException), AIService.GEMINI)
+            }
+        } else {
+            onSolutionResult(Result.failure(com.example.shared.UnableToAssistException), AIService.GEMINI)
         }
     }
 
@@ -390,22 +401,29 @@ class ResultViewModel @Inject constructor(
             )
             return@launch
         }
-        lateinit var recognizedProperties: String
-        if (sharedViewModel.ocrResults.value[AIService.GPT].isNullOrBlank()) {
+        var recognizedProperties = ""
+        if (passedProperties.isBlank() && sharedViewModel.ocrResults.value[AIService.GPT].isNullOrBlank()) {
             val result = openAiUseCase.generateOpenAiSolution(
                 fileURL = imageURL,
                 prompt = ocrPrompt,
-                systemInstruction = "$languageInstruction $resultOnly"
+                systemInstruction = "$languageInstruction $noSummaries"
             )
-            result.onSuccess { sharedViewModel.updateOcrResults(AIService.GPT, it); recognizedProperties = it }
-            result.onFailure { return@launch }
-        } else {
-            recognizedProperties = sharedViewModel.ocrResults.value[AIService.GPT]!!
+            result.onSuccess { sharedViewModel.updateOcrResults(AIService.GPT, it, override = false); recognizedProperties = it }
+            result.onFailure { onSolutionResult(result, AIService.GPT); return@launch }
         }
         val result = openAiUseCase.generateOpenAiSolution(
             fileURL = null,
-            prompt = buildSolvingPrompt(TextUtils.htmlToJsonString(recognizedProperties) + addProperties(userTask)),
-            systemInstruction = "$languageInstruction $resultAtTop"
+            prompt = buildSolvingPrompt(
+                passedProperties.ifBlank {
+                    "${TextUtils.htmlToJsonString(recognizedProperties)} ${
+                        addProperties(
+                            userTask,
+                            recognizedProperties.isNotBlank()
+                        )
+                    }"
+                }
+            ),
+            systemInstruction = languageInstruction
         )
         onSolutionResult(result, AIService.GPT)
     }
@@ -442,11 +460,21 @@ class ResultViewModel @Inject constructor(
         }
 
         finalResult.onFailure {
-            updateSolutionResults(aiService, null)
+            if (aiService == AIService.GEMINI) {
+                val remainedAttempts = geminiAttempts.decrementAndGet()
+                if (remainedAttempts == 0) {
+                    // all gemini attempts have failed
+                    updateSolutionResults(aiService, null)
+                }
+            } else {
+                updateSolutionResults(aiService, null)
+            }
+            /*
+            // maxSolutionResultsCapacity is not maintained
             updateErrors(it)
             if (errors.value.size >= maxSolutionResultsCapacity) {
                 updateShouldShowErrorDialog(true)
-            }
+            }*/
         }
 
         val progress = solutionResults.value.size.toFloat() / maxSolutionResultsCapacity

@@ -26,8 +26,12 @@ class SharedViewModel@Inject constructor(): ViewModel() {
 
     fun updateOcrResults(
         aiService: AIService,
-        resultText: String
+        resultText: String,
+        override: Boolean
     ) {
+        if (!override && _ocrResults.value.containsKey(aiService)) {
+            return
+        }
         if (resultText.isNotBlank()) {
             val htmlString = TextUtils.markdownToHtml(resultText)
             if (_selectedOcrService.value == null) {

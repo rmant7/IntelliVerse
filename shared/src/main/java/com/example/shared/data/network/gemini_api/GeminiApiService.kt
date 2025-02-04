@@ -1,7 +1,5 @@
 package com.example.shared.data.network.gemini_api
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -28,7 +26,7 @@ class GeminiApiService @Inject constructor() {
         .writeTimeout(300, TimeUnit.SECONDS)
         .build()
 
-    suspend fun processFile(
+    fun processFile(
         filePath: String,
         description: String,
         explanationLevel: String,
@@ -51,9 +49,7 @@ class GeminiApiService @Inject constructor() {
                 .post(requestBody)
                 .build()
 
-            val response = withContext(Dispatchers.IO) {
-                httpClient.newCall(request).execute()
-            }
+            val response = httpClient.newCall(request).execute()
 
             parseResponse(response)
 

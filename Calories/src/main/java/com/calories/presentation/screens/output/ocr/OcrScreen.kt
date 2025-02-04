@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.calories.BuildConfig
 import com.calories.R
+import com.example.shared.domain.usecases.TextUtils
 import com.example.shared.presentation.common.ApplicationScaffold
 import com.example.shared.presentation.common.button.RadioIndexButton
 import com.example.shared.presentation.common.button.TextAlignmentButton
@@ -49,7 +50,7 @@ import com.example.shared.presentation.common.web_view.cleanHtmlStr
 @Composable
 fun OcrScreenContent(
     viewModel: OcrViewModel,
-    onNavigateToResultScreen: () -> Unit
+    onNavigateToResultScreen: (String?) -> Unit
 ) {
 
     val selectedOcrService = viewModel.sharedViewModel.selectedOcrService.collectAsState()
@@ -90,7 +91,7 @@ fun OcrScreenContent(
                     onConfirmation = {
                         shouldShowErrorMessage.value = false
                         viewModel.updateError(null)
-                        onNavigateToResultScreen()
+                        onNavigateToResultScreen(null)
                     },
                     errors = listOf(ocrError.value!!),
                     icon = Icons.Default.Info
@@ -114,7 +115,8 @@ fun OcrScreenContent(
                         onValueChange = {
                             viewModel.sharedViewModel.updateOcrResults(
                                 selectedOcrService.value!!,
-                                it
+                                it,
+                                override = true
                             )
                         },
                         isReload = isWebViewReload.value,
@@ -152,7 +154,8 @@ fun OcrScreenContent(
                                     webView.value?.evaluateJavascript("getContent()") { latestValue ->
                                         viewModel.sharedViewModel.updateOcrResults(
                                             selectedOcrService.value!!,
-                                            cleanHtmlStr(latestValue)
+                                            cleanHtmlStr(latestValue),
+                                            override = true
                                         )
                                         viewModel.sharedViewModel.updateSelectedOcrService(aiService)
                                         // maybe required?
@@ -183,9 +186,9 @@ fun OcrScreenContent(
                     enabled = isOcrEdited.value
                 ) {
                     webView.value?.evaluateJavascript("getContent()") { latestValue ->
-                        val newOcrResult = cleanHtmlStr(latestValue)
+                        val newOcrResult = TextUtils.htmlToJsonString(cleanHtmlStr(latestValue))
                         viewModel.sharedViewModel.solveByOcrResult(selectedOcrService.value!!, newOcrResult)
-                        onNavigateToResultScreen() // Navigate with the latest value
+                        onNavigateToResultScreen(newOcrResult) // Navigate with the latest value
                     }
                 }
             }

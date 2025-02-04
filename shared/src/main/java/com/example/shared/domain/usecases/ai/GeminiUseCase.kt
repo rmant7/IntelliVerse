@@ -7,7 +7,7 @@ class GeminiUseCase @Inject constructor(
     private val geminiApiService: GeminiApiService
 ) {
 
-    suspend fun processGeminiFile(
+    fun processGeminiFile(
         filePath: String,
         description: String,
         explanationLevel: String,

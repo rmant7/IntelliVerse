@@ -207,12 +207,15 @@ private fun NavigationController(
                 viewModel = hiltViewModel<OcrViewModel>(ocrViewModelState.value!!).apply {
                     initSharedViewModel(hiltViewModel<SharedViewModel>(sharedViewModelState.value!!))
                 },
-                onNavigateToResultScreen = {
-                    val resultScreen = lastScreensVersions[Screen.Result.index]
+                onNavigateToResultScreen = { passedProperties ->
+                    var resultScreen = lastScreensVersions[Screen.Result.index]
+                    check(resultScreen is Screen.Result) { "expected $resultScreen to be Result Screen" }
+                    resultScreen = resultScreen.copy(passedEditedOcr = passedProperties ?: "")
                     val route = resultScreen.createRoute()
                     sharedNavViewModel.lastMathRoute = route
                     navController.navigate(route)
                     resultViewModelState.value = navController.getBackStackEntry(route)
+                    lastScreensVersions.updateOrInsert(resultScreen)
                 }
             )
             lastScreensVersions.updateOrInsert(currScreen)
