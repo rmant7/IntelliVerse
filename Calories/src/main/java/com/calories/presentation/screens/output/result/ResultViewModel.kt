@@ -14,7 +14,6 @@ import com.example.shared.domain.prompt.options.SolutionLanguageOption
 import com.example.shared.domain.usecases.SpeechConverter
 import com.example.shared.domain.usecases.TextUtils
 import com.example.shared.domain.usecases.ai.client.GeminiUseCaseClient
-import com.example.shared.domain.usecases.ai.GeminiUseCase
 import com.example.shared.domain.usecases.ai.OpenAiUseCase
 import com.example.shared.domain.usecases.AudioPlayer
 import com.example.shared.domain.usecases.ImageUtils
@@ -46,7 +45,6 @@ class ResultViewModel @Inject constructor(
     private val imageUtils: ImageUtils,
     private val googleDisk: GoogleDisk,
     private val geminiUseCaseClient: GeminiUseCaseClient,
-    private val geminiUseCase: GeminiUseCase,
     private val openAiUseCase: OpenAiUseCase,
     private val interstitialAdUseCase: InterstitialAdUseCase,
     private val speechConverter: SpeechConverter,
@@ -280,7 +278,16 @@ class ResultViewModel @Inject constructor(
 
         if (hasImage) {
             geminiAttempts.set(1)
-            geminiClient()
+            geminiWithinApp()
+            val result = googleDisk.upload(passedImageUri!!)
+            result.onSuccess { uploadResponse ->
+                imageURL = uploadResponse.fileUrl
+                filePath = uploadResponse.filePath
+                gpt()
+            }
+            result.onFailure {
+                onSolutionResult(Result.failure(UnableToAssistException), AIService.GPT)
+            }
         } else {
             geminiAttempts.set(2)
             val prompt = buildSolvingPrompt(userTask)
@@ -304,7 +311,7 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    private fun geminiClient() = viewModelScope.launch(Dispatchers.IO) {
+    private fun geminiWithinApp() = viewModelScope.launch(Dispatchers.IO) {
         if (generativeLanguageURL.isBlank()) {
             val fileByteArray = imageUtils.convertUriToByteArray(passedImageUri!!)
             if (fileByteArray != null) {
@@ -334,6 +341,10 @@ class ResultViewModel @Inject constructor(
             result.onFailure {
                 onSolutionResult(result, AIService.GEMINI)
                 return@launch
+            }
+        } else {
+            recognizedProperties = passedProperties.ifBlank {
+                sharedViewModel.ocrResults.value[AIService.GEMINI]!!
             }
         }
         val clientResult = geminiUseCaseClient.generateGeminiSolution(
@@ -410,6 +421,10 @@ class ResultViewModel @Inject constructor(
             )
             result.onSuccess { sharedViewModel.updateOcrResults(AIService.GPT, it, override = false); recognizedProperties = it }
             result.onFailure { onSolutionResult(result, AIService.GPT); return@launch }
+        } else {
+            recognizedProperties = passedProperties.ifBlank {
+                sharedViewModel.ocrResults.value[AIService.GPT]!!
+            }
         }
         val result = openAiUseCase.generateOpenAiSolution(
             fileURL = null,
